@@ -1,1 +1,1 @@
-export { ZtMiddleware } from './src/InitializeClass'
+export { ZtMiddleware } from './src/InitializeClass';

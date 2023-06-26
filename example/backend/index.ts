@@ -3,6 +3,7 @@ import * as http from 'http';
 import {KeyPairType} from 'virgil-crypto';
 import bodyParser from 'body-parser';
 import cors from "cors"
+import { ZtMiddleware } from 'build';
 
 const app: Express = express()
 const server = http.createServer(app);

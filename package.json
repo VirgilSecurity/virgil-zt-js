@@ -5,10 +5,13 @@
   "repository": "git@github.com:VirgilSecurity/virgil-zt-js.git",
   "author": "azirb <cruzenepro@yandex.ru>",
   "private": false,
+  "type": "module",
   "scripts": {
-    "build": "tsc"
+    "build": "rollup -c"
   },
   "dependencies": {
+    "@rollup/plugin-typescript": "^11.0.0",
+    "rollup": "^3.20.2",
     "virgil-crypto": "^4.2.2",
     "virgil-sdk": "^6.2.0"
   },
