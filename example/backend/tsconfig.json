@@ -10,7 +10,7 @@
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": true,
-    "declarationDir": "./dist",
+    "declarationDir": "./dist/types",
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
@@ -22,5 +22,4 @@
       "dom"
     ]
   },
-  "exclude": ["builded"]
 }

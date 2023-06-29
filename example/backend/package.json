@@ -15,11 +15,11 @@
   },
   "dependencies": {
     "@types/cors": "^2.8.13",
-    "@virgilsecurity/data-utils": "^1.0.0",
+    "@virgilsecurity/data-utils": "^2.0.0",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
-    "virgil-crypto": "^4.2.2",
-    "virgil-sdk": "^6.2.0"
+    "ts-node": "^10.9.1",
+    "virgil-crypto": "^5.0.2"
   },
   "devDependencies": {
     "@types/express": "^4.17.16",
@@ -31,9 +31,6 @@
     "nodemon": "^2.0.20",
     "ts-loader": "^9.4.2",
     "tsc": "^2.0.4",
-    "typescript": "^4.9.5",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1",
-    "webpack-dev-server": "^4.11.1"
+    "typescript": "^4.9.5"
   }
 }

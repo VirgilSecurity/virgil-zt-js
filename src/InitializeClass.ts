@@ -11,7 +11,6 @@ import {
 import { NodeBuffer } from '@virgilsecurity/data-utils';
 import { VirgilPublicKey } from 'virgil-crypto/dist/types/VirgilPublicKey';
 
-
 class ZtMiddleware {
 
 	private encryptKeys: CryptoKeys;
@@ -19,8 +18,8 @@ class ZtMiddleware {
 	private frontendPublicKey: VirgilPublicKey;
 	private loginPath: string;
 	private encryptEncoding: BufferEncoding;
-	private storageSave: Function;
-	private storageLoad: Function;
+	private storageControl: Function;
+	private activeStorage = false;
 
 	/*
 		Initialize crypto module to upload wasm and other files
@@ -29,20 +28,22 @@ class ZtMiddleware {
 		await initCrypto();
 	};
 
-	constructor(keyType: KeyPairType, loginPath: string, encoding: BufferEncoding = 'base64', storageSaveInterface: Function, storageLoadInterface: Function) {
+	constructor(keyType: KeyPairType, loginPath: string, storageControl?: Function, encoding: BufferEncoding = 'base64') {
 		ZtMiddleware.initializeCryptoModule()
 			.then(() => {
 				this.virgilCrypto = new VirgilCrypto({defaultKeyPairType: keyType});
 				this.encryptKeys = this.virgilCrypto.generateKeys();
 				this.loginPath = loginPath;
 				this.encryptEncoding = encoding;
-				if (storageSaveInterface) {
-					this.storageSave = storageSaveInterface;
-					this.storageSave(this.encryptKeys, false);
-				}
-				if (storageLoadInterface) {
-					this.storageLoad = storageLoadInterface;
-					this.encryptKeys = this.storageLoad();
+				if (storageControl) {
+					this.storageControl = storageControl;
+					const serverKeys = this.storageControl(false, false);
+					if (serverKeys) {
+						this.encryptKeys = serverKeys;
+					} else {
+						this.storageControl(true, false, this.encryptKeys);
+					}
+					this.activeStorage = true;
 				}
 				console.log('Successfully init Crypto Module');
 			});
@@ -59,14 +60,17 @@ class ZtMiddleware {
 	}
 
 	private setKey(key: string): void {
-		if (this.storageLoad(true)) {
-			this.frontendPublicKey = this.storageLoad(true);
+		if (this.activeStorage) {
+			const getKey = this.storageControl(false, true);
+			if (getKey) {
+				this.frontendPublicKey = this.virgilCrypto.importPublicKey(NodeBuffer.from(getKey, 'base64'));
+			} else {
+				this.storageControl(true, true, key);
+				this.frontendPublicKey = this.virgilCrypto.importPublicKey(NodeBuffer.from(key, 'base64'));
+			}
 			return;
 		}
 		this.frontendPublicKey = this.virgilCrypto.importPublicKey(NodeBuffer.from(key, 'base64'));
-		if (this.storageSave) {
-			this.storageSave(this.frontendPublicKey, true);
-		}
 	}
 
 	private rewriteResponse(res: Response) {
