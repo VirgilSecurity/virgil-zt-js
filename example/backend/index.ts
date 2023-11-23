@@ -31,7 +31,16 @@ function storage(isSave: boolean, isClient: boolean, key?: unknown) {
 
 const app: Express = express();
 
-const virgil = new ZtMiddleware(KeyPairType.ED25519, '/login', storage, 'base64');
+const virgil = new ZtMiddleware({
+	passkeyFlow: true,
+	loginPath: '/login',
+	registerPath: '/register',
+	keyType: KeyPairType.ED25519,
+	replayingId: 'localhost',
+	expectedOrigin: 'http://localhost:4200',
+	storageControl: storage,
+	encoding: 'base64'
+});
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -54,7 +63,7 @@ const server = app.listen(3001, () => {
 [ 'exit', 'SIGINT', 'SIGUSR1', 'SIGUSR2', 'uncaughtException', 'SIGTERM' ].forEach((eventType) => {
 	process.on(eventType, () => {
 		console.log('write to file');
-		const saveObject: {serverKeys: unknown[], clientKeys: unknown[]} = {serverKeys: [], clientKeys: []};
+		const saveObject: { serverKeys: unknown[], clientKeys: unknown[] } = {serverKeys: [], clientKeys: []};
 		TemplateStorage.forEach((value: unknown, key) => {
 			if (key == 'server') {
 				saveObject.serverKeys.push(value);

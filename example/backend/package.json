@@ -14,6 +14,7 @@
     "lint:fix": "eslint . --ext .ts --fix"
   },
   "dependencies": {
+    "@simplewebauthn/server": "^8.3.5",
     "@types/cors": "^2.8.13",
     "@virgilsecurity/data-utils": "^2.0.0",
     "body-parser": "^1.20.2",

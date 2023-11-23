@@ -15,10 +15,10 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "esModuleInterop": true,
-    "target": "es2020",
+    "target": "es2021",
     "module": "es2020",
     "lib": [
-      "es2018",
+      "es2021",
       "dom"
     ]
   },

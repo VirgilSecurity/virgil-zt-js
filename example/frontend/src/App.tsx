@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import {Axios} from 'axios';
 import {initCrypto, KeyPairType, VirgilCrypto, VirgilKeyPair, VirgilPublicKey} from 'virgil-crypto';
-import {NodeBuffer} from '@virgilsecurity/data-utils';
+import {OwnID} from '@ownid/react';
 
 let test: VirgilCrypto;
 let keys: VirgilKeyPair;
@@ -30,6 +30,7 @@ const request = new Axios({
 
 function App() {
   const [result, setResult] = useState<any>(null)
+  const [userName, setUserName] = useState<string>('');
   const login = () => {
     request.post('/login', {
       key: test.exportPublicKey(keys.publicKey).toString('base64')
@@ -65,6 +66,15 @@ function App() {
       setResult(res);
     })
   }
+
+  const passkeysLogin = async () => {
+    await request.post('/login/start', {username: userName}).then(async (value) => {
+        const data = await fido2Get(value, userName);
+        await request.post('/login/finish', data).then((value) => {
+          console.log(value);
+        })
+    })
+  }
   return (
     <div className="container">
       <button onClick={() => login()}>Login</button>
@@ -73,6 +83,13 @@ function App() {
       <button onClick={() => getRequest()}>Get request</button>
       <h2>Result after decrypt, check console for more</h2>
       <h3>{result}</h3>
+
+      <OwnID type='login'
+             options={{ variant: 'button-fingerprint', infoTooltip:true }}
+             passwordField={passwordField}
+             loginIdField={emailField}
+             onError={(error) => console.error(error)}
+             onLogin={onLogin}/>
     </div>
   );
 }
