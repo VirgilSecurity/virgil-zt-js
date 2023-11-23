@@ -83,13 +83,7 @@ function App() {
       <button onClick={() => getRequest()}>Get request</button>
       <h2>Result after decrypt, check console for more</h2>
       <h3>{result}</h3>
-
-      <OwnID type='login'
-             options={{ variant: 'button-fingerprint', infoTooltip:true }}
-             passwordField={passwordField}
-             loginIdField={emailField}
-             onError={(error) => console.error(error)}
-             onLogin={onLogin}/>
+    </div>
     </div>
   );
 }
