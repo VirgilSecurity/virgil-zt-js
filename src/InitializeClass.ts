@@ -117,6 +117,8 @@ class ZtMiddleware {
 		}
 		this.defaultFlow(res);
 		return next();
+
+
 	};
 
 }
