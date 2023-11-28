@@ -2,4 +2,5 @@ example
 node_modules
 .idea/
 *.log
-
+*.md
+.eslintrc.json

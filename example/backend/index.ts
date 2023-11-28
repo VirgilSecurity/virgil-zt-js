@@ -6,10 +6,8 @@ import express, {
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import { KeyPairType } from 'virgil-crypto';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { ZtMiddleware } from 'build';
 import * as fs from 'fs';
+import { ZtMiddleware } from '@virgilsecurity/virgil-zt';
 
 
 const TemplateStorage: Map<string, any> = new Map<string, any>();
@@ -37,7 +35,7 @@ const virgil = new ZtMiddleware({
 	registerPath: '/register',
 	keyType: KeyPairType.ED25519,
 	replayingId: 'localhost',
-	expectedOrigin: ['http://localhost:3000'],
+	expectedOrigin: [ 'http://localhost:3000' ],
 	storageControl: storage,
 	encoding: 'base64'
 });
