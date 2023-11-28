@@ -1,1 +1,49 @@
-{"serverKeys":[],"clientKeys":[]}
+{
+  "serverKeys": [
+    {
+      "privateKey": {
+        "identifier": {
+          "type": "Buffer",
+          "data": [
+            171,
+            209,
+            34,
+            95,
+            6,
+            146,
+            16,
+            227
+          ]
+        },
+        "lowLevelPrivateKey": {
+          "name": "RawPrivateKey",
+          "ctxPtr": 250560
+        },
+        "_isDisposed": false
+      },
+      "publicKey": {
+        "identifier": {
+          "type": "Buffer",
+          "data": [
+            171,
+            209,
+            34,
+            95,
+            6,
+            146,
+            16,
+            227
+          ]
+        },
+        "lowLevelPublicKey": {
+          "name": "RawPublicKey",
+          "ctxPtr": 250536
+        },
+        "_isDisposed": false
+      }
+    }
+  ],
+  "clientKeys": [
+    "MCowBQYDK2VwAyEAwjXYyDPUOr2z9RRo6NRUuO9io4M9DBn7vPz/HJxtCMY="
+  ]
+}

@@ -9,12 +9,17 @@ export interface CryptoKeys {
 }
 
 export interface Settings {
-	passkeyFlow: boolean,
 	loginPath: string,
 	registerPath: string,
 	keyType: KeyPairType,
-	replayingId?: string,
-	expectedOrigin?: string,
+	replayingId: string,
+	expectedOrigin: string[],
 	storageControl?: CallableFunction,
 	encoding?: BufferEncoding
+}
+
+export interface User {
+	credentialID: string;
+	credentialPublicKey: string;
+	counter: unknown;
 }
