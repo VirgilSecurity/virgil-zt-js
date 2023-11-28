@@ -1,6 +1,6 @@
 {
   "name": "@virgilsecurity/virgil-zt",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Custom middleware for Node.js that accept encrypt and decrypt requests",
   "repository": {
     "type": "git",
@@ -36,7 +36,7 @@
     "url": "https://github.com/VirgilSecurity/virgil-zt-js/issues"
   },
   "homepage": "https://github.com/VirgilSecurity/virgil-zt-js#readme",
-  "main": "index.js",
+  "main": "index.ts",
   "directories": {
     "example": "example"
   },
