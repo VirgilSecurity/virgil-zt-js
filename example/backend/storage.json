@@ -5,14 +5,14 @@
         "identifier": {
           "type": "Buffer",
           "data": [
-            27,
-            17,
-            245,
-            240,
-            22,
-            55,
-            144,
-            71
+            171,
+            209,
+            34,
+            95,
+            6,
+            146,
+            16,
+            227
           ]
         },
         "lowLevelPrivateKey": {
@@ -25,14 +25,14 @@
         "identifier": {
           "type": "Buffer",
           "data": [
-            27,
-            17,
-            245,
-            240,
-            22,
-            55,
-            144,
-            71
+            171,
+            209,
+            34,
+            95,
+            6,
+            146,
+            16,
+            227
           ]
         },
         "lowLevelPublicKey": {
@@ -44,6 +44,6 @@
     }
   ],
   "clientKeys": [
-    "MCowBQYDK2VwAyEAUvFlxXETBF8la8ahoj5kwVy8ld4FVLi2OOUgKNSUtKA="
+    "MCowBQYDK2VwAyEAwjXYyDPUOr2z9RRo6NRUuO9io4M9DBn7vPz/HJxtCMY="
   ]
 }

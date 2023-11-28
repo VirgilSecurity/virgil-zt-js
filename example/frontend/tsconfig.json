@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES2022",
+    "module": "ES2022",
+    "useDefineForClassFields": false,
     "lib": [
+      "ES2022",
       "dom",
       "dom.iterable",
       "esnext"
@@ -13,14 +16,10 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": [
-    "src"
-  ]
 }

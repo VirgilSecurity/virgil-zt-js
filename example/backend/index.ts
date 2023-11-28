@@ -5,10 +5,11 @@ import express, {
 } from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import { KeyPairType } from 'virgil-crypto';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import { ZtMiddleware } from 'build';
 import * as fs from 'fs';
-import { KeyPairType } from 'virgil-crypto';
 
 
 const TemplateStorage: Map<string, any> = new Map<string, any>();
@@ -31,7 +32,15 @@ function storage(isSave: boolean, isClient: boolean, key?: unknown) {
 
 const app: Express = express();
 
-const virgil = new ZtMiddleware(KeyPairType.ED25519, '/login', storage, 'base64');
+const virgil = new ZtMiddleware({
+	loginPath: '/login',
+	registerPath: '/register',
+	keyType: KeyPairType.ED25519,
+	replayingId: 'localhost',
+	expectedOrigin: ['http://localhost:3000'],
+	storageControl: storage,
+	encoding: 'base64'
+});
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -47,14 +56,14 @@ app.post('/new-post', (req: Request, res: Response) => {
 	res.send({data: {name: 'Tester', password: 'pass'}});
 });
 
-const server = app.listen(3001, () => {
+const server = app.listen(3002, () => {
 	console.log('Server is running');
 });
 
 [ 'exit', 'SIGINT', 'SIGUSR1', 'SIGUSR2', 'uncaughtException', 'SIGTERM' ].forEach((eventType) => {
 	process.on(eventType, () => {
 		console.log('write to file');
-		const saveObject: {serverKeys: unknown[], clientKeys: unknown[]} = {serverKeys: [], clientKeys: []};
+		const saveObject: { serverKeys: unknown[], clientKeys: unknown[] } = {serverKeys: [], clientKeys: []};
 		TemplateStorage.forEach((value: unknown, key) => {
 			if (key == 'server') {
 				saveObject.serverKeys.push(value);
