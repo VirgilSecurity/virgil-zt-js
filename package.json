@@ -1,6 +1,6 @@
 {
   "name": "@virgilsecurity/virgil-zt",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Custom middleware for Node.js that accept encrypt and decrypt requests",
   "repository": {
     "type": "git",
