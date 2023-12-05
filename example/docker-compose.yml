@@ -1,0 +1,14 @@
+version : "1"
+services:
+  backend:
+    build: ./backend
+    container_name: backend
+    environment:
+      - NODE_OPTIONS="--experimental-specifier-resolution=node"
+    ports:
+      - 33434:33434
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - 33435:80

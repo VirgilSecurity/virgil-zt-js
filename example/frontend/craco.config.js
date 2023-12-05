@@ -13,4 +13,7 @@ module.exports = {
 			},
 		},
 	},
+	devServer: {
+		port: 33435
+	}
 };

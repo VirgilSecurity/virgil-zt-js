@@ -7,7 +7,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import { KeyPairType } from 'virgil-crypto';
 import * as fs from 'fs';
-import { ZtMiddleware } from '@virgilsecurity/virgil-zt';
+import { ZtMiddleware } from "./src/InitializeClass";
 
 
 const TemplateStorage: Map<string, any> = new Map<string, any>();
@@ -35,7 +35,7 @@ const virgil = new ZtMiddleware({
 	registerPath: '/register',
 	keyType: KeyPairType.ED25519,
 	replayingId: 'localhost',
-	expectedOrigin: [ 'http://localhost:3000' ],
+	expectedOrigin: [ 'http://localhost:33435' ],
 	storageControl: storage,
 	encoding: 'base64'
 });
@@ -54,7 +54,7 @@ app.post('/new-post', (req: Request, res: Response) => {
 	res.send({data: {name: 'Tester', password: 'pass'}});
 });
 
-const server = app.listen(3002, () => {
+const server = app.listen(33434, () => {
 	console.log('Server is running');
 });
 
