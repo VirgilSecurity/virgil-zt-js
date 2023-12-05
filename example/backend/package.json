@@ -8,7 +8,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc --project tsconfig.json",
-    "start": "node dist/index.js",
+    "start": "node --es-module-specifier-resolution=node dist/index.js",
     "dev": "tsc -watch",
     "dev:watch": "concurrently \"yarn dev\" \"nodemon --exec ts-node -q dist/index.js\"",
     "lint:fix": "eslint . --ext .ts --fix"
@@ -17,7 +17,6 @@
     "@simplewebauthn/server": "^8.3.5",
     "@types/cors": "^2.8.13",
     "@virgilsecurity/data-utils": "^2.0.0",
-    "@virgilsecurity/virgil-zt": "^1.0.8",
     "base64url": "^3.0.1",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",

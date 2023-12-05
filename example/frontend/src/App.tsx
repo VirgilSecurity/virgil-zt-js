@@ -28,7 +28,7 @@ init()
 	});
 
 const request = new Axios({
-	baseURL: 'http://localhost:3002',
+	baseURL: 'http://' + new URL(window.location.href).host.slice(0, new URL(window.location.href).host.indexOf(':')) + ':33434',
 	transformRequest: (req) => JSON.stringify(req),
 	transformResponse: (res) => JSON.parse(res),
 	headers: {
